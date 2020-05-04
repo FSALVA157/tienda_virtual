@@ -10,7 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isSearching = true;
+  bool _isSearching = false;
+  
   
 
   @override
@@ -18,8 +19,14 @@ class _HomePageState extends State<HomePage> {
     
       return Scaffold(
            drawer: BasicDrawer(),
-          appBar: _isSearching? getAppBarSearching(cancelSearch, searching): getAppBarNotSearching(context, startSearching), 
+          appBar: menuApp(),
           
+    //        _isSearching? setState(() {
+    //        getAppBarSearching(cancelSearch, searching);
+    //       }): setState(() {
+    //        getAppBarNotSearching(context, startSearching);
+                
+    // })
         
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -37,13 +44,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  AppBar menuApp(){
+    
+            if (_isSearching == true){
+              return getAppBarSearching(cancelSearch, searching);
+            }else{
+              return getAppBarNotSearching(context, startSearching);
+            }
+
+            // setState(() {
+              
+            // });
+          
+  }
+
   void startSearching(){
     setState(() {
       _isSearching = true;
     });
   }
 
-  void cancelSearch(){}
+  void cancelSearch(){
+    setState(() {
+      _isSearching = false;
+    });
+  }
 
   void searching(){}
 

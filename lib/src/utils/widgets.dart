@@ -40,7 +40,7 @@ Widget getAppBarNotSearching(BuildContext context, Function startSearchingFuncti
         IconButton(
           icon: Icon(Icons.search,color: Theme.of(context).bottomAppBarColor,),
           onPressed: (){
-
+            startSearchingFunction();
           }
            ),
       IconButton(

@@ -37,8 +37,8 @@ ThemeData basicTheme(){
   //final Color colorPrimario = Color(0xFF0DA56D);
   //final Color colorPrimario = Color(0xFFFF9800);
   //final Color colorPrimario = Color(0xFF9A80A5);
-  //final Color colorPrimario = Color(0xFF5C3396);
-  final Color colorPrimario = Color(0xFFC72323);
+  final Color colorPrimario = Color(0xFF5C3396);
+ // final Color colorPrimario = Color(0xFFC72323);
 
   return base.copyWith(
     textTheme: _basicTextTheme(base.textTheme),
