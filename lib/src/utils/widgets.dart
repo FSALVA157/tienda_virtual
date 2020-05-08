@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 Widget getAppBarSearching(Function cancelSearch, Function searching){
       //TextEditingController searchController){
@@ -48,5 +50,41 @@ Widget getAppBarNotSearching(BuildContext context, Function startSearchingFuncti
         onPressed: (){}),
     ],
   );
+}
 
+
+
+Widget carouselBasico(double altura){
+List<String> listImagenes = [
+     'assets/images/carrousel/slider_1.jpg',
+      'assets/images/carrousel/slider_2.jpg',
+      'assets/images/carrousel/slider_3.jpg',
+      'assets/images/carrousel/slider_4.jpg'
+];
+
+    return CarouselSlider(
+      
+      options: CarouselOptions(
+            height: altura,
+            //aspectRatio: 2.0,
+            viewportFraction: 1.0,
+            enlargeCenterPage: false,
+            autoPlay: true,
+            autoPlayCurve: Curves.fastOutSlowIn,
+
+      ),
+      items: listImagenes.map(
+        (item) => Container(
+          height: altura,
+          child: Center(
+            child: Image.asset(item,
+            fit: BoxFit.cover,width: 1000,height: altura,),
+            
+          ),
+        )
+        ).toList(),
+
+      );
+
+  
 }

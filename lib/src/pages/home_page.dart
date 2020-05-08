@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
+import 'package:tienda_virtual/src/utils/categorias.dart';
 import 'package:tienda_virtual/src/utils/widgets.dart';
+
+
 
 class HomePage extends StatefulWidget {
   static final String ruta = 'home'; 
@@ -16,29 +19,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
+      final _screenSize = MediaQuery.of(context).size;
+      double _heightCarousel = _screenSize.height * 0.3;
+      double _heightCategorias = _screenSize.height * 0.2;
       return Scaffold(
            drawer: BasicDrawer(),
           appBar: menuApp(),
-          
-    //        _isSearching? setState(() {
-    //        getAppBarSearching(cancelSearch, searching);
-    //       }): setState(() {
-    //        getAppBarNotSearching(context, startSearching);
-                
-    // })
-        
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+            
+        body: ListView(
           children: <Widget>[
-            Text('Primera Linea',style: Theme.of(context).textTheme.display1,),
-            Icon(Icons.touch_app),
-            FlatButton(
-              onPressed: (){}, 
-              child: Text('Boton de Prueba',style: Theme.of(context).textTheme.caption),
-              color: Theme.of(context).primaryColor,
-              
-              )
+            //Slider
+            Container(
+              height: _heightCarousel,
+              child: carouselBasico(_heightCarousel),
+            ),
+             Categorias(),
+            
+          
+    
+
+
+
+
           ],
         ),
     );

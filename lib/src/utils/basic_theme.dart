@@ -18,18 +18,24 @@ ThemeData basicTheme(){
         ),
         display1: base.display1.copyWith(
           fontFamily: 'Roboto',
-          fontSize: 24.0,
+          fontSize: 20.0,
           color: Colors.blueGrey
         ),
         display2: base.display2.copyWith(
-          fontFamily: 'Lato',
-          fontSize: 20.0,
-          color: Colors.blueGrey
+          fontFamily: 'Roboto',
+          fontSize: 14.0,
+          color: Colors.grey
         ),
         caption: base.caption.copyWith(
           fontFamily: 'Roboto',
           color: Colors.white
-        )
+        ),
+        subtitle: base.subtitle.copyWith(
+          fontFamily: 'Lato',
+          color: Colors.blueGrey,
+          fontSize: 10.0,
+          fontWeight: FontWeight.bold
+        ),
       );
   }
 

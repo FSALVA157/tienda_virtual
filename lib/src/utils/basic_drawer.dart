@@ -34,18 +34,38 @@ class BasicDrawer extends StatelessWidget {
           //   ),
             ListTile(
               onTap: ()=>Navigator.pushReplacementNamed(context, HomePage.ruta),
-              title: Text('Home',style: Theme.of(context).textTheme.display2,),
+              title: Text('Inicio',style: Theme.of(context).textTheme.display2,),
               leading: Icon(Icons.home,color: Colors.green,),
             ),
             ListTile(
               onTap: (){},
-              title: Text('Sin Definir',style: Theme.of(context).textTheme.display2,),
-              leading: Icon(Icons.home,color: Colors.grey,),
+              title: Text('Mi Cuenta',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.account_box,color: Colors.grey,),
             ),
             ListTile(
               onTap: (){},
-              title: Text('Sin Definir',style: Theme.of(context).textTheme.display2,),
-              leading: Icon(Icons.home,color: Colors.grey,),
+              title: Text('Mi Carrito',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.shop,color: Colors.blue,),
+            ),
+            ListTile(
+              onTap: (){},
+              title: Text('Categorías',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.category,color: Colors.blue,),
+            ),
+            ListTile(
+              onTap: (){},
+              title: Text('Favoritos',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.favorite,color: Colors.grey,),
+            ),
+            ListTile(
+              onTap: (){},
+              title: Text('Configuración',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.settings,color: Colors.green,),
+            ),
+            ListTile(
+              onTap: (){},
+              title: Text('Quienes Somos',style: Theme.of(context).textTheme.display2,),
+              leading: Icon(Icons.help,color: Colors.green,),
             ),
         ],
       ),
