@@ -7,7 +7,7 @@ class Categoria {
   int parent;
   String description;
   String display;
-  dynamic image;
+  ImageClass image;
   int menuOrder;
   int count;
   Links links;
@@ -32,10 +32,10 @@ class Categoria {
     this.parent      = jsonCat['parent'];
     this.description = jsonCat['description'];
     this.display     = jsonCat['display'];
-    this.image       = jsonCat['image'];
+    this.image       = ImageClass.fromJsonMap(jsonCat['image']);
     this.menuOrder   = jsonCat['menu_order'];
     this.count       = jsonCat['count'];
-    this.links       = jsonCat['_links'];
+    this.links       = Links.fromJsonList(jsonCat['_links']);
   }
 }
 
@@ -59,6 +59,18 @@ class ImageClass {
     this.name,
     this.alt,
   });
+
+  ImageClass.fromJsonMap(Map<String,dynamic> jsonImage){
+    this.id = jsonImage['id'];
+    this.dateCreated = jsonImage['date_created'];
+    this.dateCreatedGmt = jsonImage['date_created_gmt'];
+    this.dateModified = jsonImage['date_modified'];
+    this.dateModifiedGmt = jsonImage['date_modified_gmt'];
+    this.src = jsonImage['src'];
+    this.name = jsonImage['name'];
+    this.alt = jsonImage['alt'];
+  }
+
 }
 
 class Links {
@@ -71,6 +83,18 @@ class Links {
     this.collection,
     this.up,
   });
+
+  Links.fromJsonList(Map<String,dynamic> jsonMapElement){
+    var listSelf = jsonMapElement['self'] as List;
+    var listCollection = jsonMapElement['collection'] as List;
+    var listUp = jsonMapElement['up'] as List;
+
+    this.self = listSelf.map((e) => Collection.fromJsonMap(e)).toList();
+    this.collection = listCollection.map((e) => Collection.fromJsonMap(e)).toList();
+    this.up = listUp.map((e) => Collection.fromJsonMap(e)).toList();
+
+
+  }
 }
 
 class Collection {
@@ -79,4 +103,9 @@ class Collection {
   Collection({
     this.href,
   });
+
+  Collection.fromJsonMap(Map<String,dynamic> jsonHref){
+    this.href = jsonHref['href'];
+  }
+  
 }
