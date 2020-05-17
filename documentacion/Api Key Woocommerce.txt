@@ -1,0 +1,6 @@
+woocommerce api key para tienda virtual
+
+Clave de cliente: ck_1d354e2a90115de84f32628d33cbf6457b2fb0c5
+
+Clave Secreta de cliente: cs_2ead46c9fc03127482e35ce9ac0f0879993bb70b
+
