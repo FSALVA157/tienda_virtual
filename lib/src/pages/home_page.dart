@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
-import 'package:tienda_virtual/src/utils/categorias.dart';
-import 'package:tienda_virtual/src/utils/widgets.dart';
+import 'package:tienda_virtual/src/widgets/listview_categorias.dart';
+import 'package:tienda_virtual/src/widgets/widgets.dart';
 
 
 
