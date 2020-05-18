@@ -102,13 +102,27 @@ class Links {
   });
 
   Links.fromJsonList(Map<String,dynamic> jsonMapElement){
-    var listSelf = jsonMapElement['self'] as List;
-    var listCollection = jsonMapElement['collection'] as List;
-    var listUp = jsonMapElement['up'] as List;
+    if(jsonMapElement['self'] != null){
+        var listSelf = jsonMapElement['self'] as List;
+        this.self = listSelf.map((e) => Collection.fromJsonMap(e)).toList();
+    }else{
+        this.self = [];
+    }
 
-    this.self = listSelf.map((e) => Collection.fromJsonMap(e)).toList();
-    this.collection = listCollection.map((e) => Collection.fromJsonMap(e)).toList();
-    this.up = listUp.map((e) => Collection.fromJsonMap(e)).toList();
+    if(jsonMapElement['collection'] != null){
+        var listCollection = jsonMapElement['collection'] as List;
+        this.collection = listCollection.map((e) => Collection.fromJsonMap(e)).toList();
+    }else{
+        this.collection = [];
+    }
+
+    if(jsonMapElement['up'] != null){
+        var listUp = jsonMapElement['up'] as List;
+
+        this.up = listUp.map((e) => Collection.fromJsonMap(e)).toList();
+    }else{
+        this.up = [];
+    }
 
 
   }

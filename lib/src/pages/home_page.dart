@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
 import 'package:tienda_virtual/src/widgets/listview_categorias.dart';
 import 'package:tienda_virtual/src/widgets/widgets.dart';
-
+import 'package:tienda_virtual/src/poviders/categorias_provider.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   AppBar menuApp(){
-    
+            final categoriasProvider = new CategoriasProvider();
+            categoriasProvider.getCategorias();
             if (_isSearching == true){
               return getAppBarSearching(cancelSearch, searching);
             }else{

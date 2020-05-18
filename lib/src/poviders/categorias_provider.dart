@@ -1,5 +1,11 @@
 
-import 'package:tienda_virtual/src/widgets/listview_categorias.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+
+import 'package:tienda_virtual/src/models/categoria_model.dart';
+
 
 class CategoriasProvider{
   String _url = 'videotecalatina.com';
@@ -7,12 +13,18 @@ class CategoriasProvider{
   String _secretApiKey = 'cs_2ead46c9fc03127482e35ce9ac0f0879993bb70b';
   String _endPoint = '/wp-json/wc/v3/products/categories';
 
-  Future <List<Categorias>> getCategorias() async {
+  Future <List<Categoria>> getCategorias() async {
 
       final url = Uri.https(_url, _endPoint,{
         'consumer_key':_apiKey,
         'consumer_secret' : _secretApiKey
         });
+
+      final respuesta = await http.get(url);
+      final dataDecoded = json.decode(respuesta.body);
+      final categorias = Categorias.fromJsonList(dataDecoded);
+      print(categorias.listaCat[0].name);
+      return [];
   }
 
 
