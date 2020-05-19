@@ -2,7 +2,7 @@
 
 class Categorias{
   List<Categoria> listaCat = new List();
-
+  Categoria itemCategoria = new Categoria();
   Categorias();
 
   Categorias.fromJsonList(List<dynamic> jsonList){
@@ -10,7 +10,11 @@ class Categorias{
     if (jsonList == null) return;
 
     for (var item in jsonList) {
-      listaCat.add(Categoria.fromJSonList(item));
+      itemCategoria = Categoria.fromJSonList(item);
+      //si una categoria no tiene imagen no la muestra
+      if(itemCategoria.image.src != null){
+        listaCat.add(itemCategoria);
+      } 
     }
   }
 
@@ -54,6 +58,15 @@ class Categoria {
     this.count       = jsonCat['count'];
     this.links       = Links.fromJsonList(jsonCat['_links']);
   }
+
+  getPosterCategoria(){
+  if(this.image.src == null){
+    return '';
+  }else{
+    return this.image.src;
+  }
+
+}
 }
 
 class ImageClass {
@@ -88,7 +101,12 @@ class ImageClass {
     this.alt = jsonImage['alt'];
   }
 
+  
 }
+
+
+
+
 
 class Links {
   List<Collection> self;

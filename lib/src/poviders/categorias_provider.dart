@@ -23,8 +23,8 @@ class CategoriasProvider{
       final respuesta = await http.get(url);
       final dataDecoded = json.decode(respuesta.body);
       final categorias = Categorias.fromJsonList(dataDecoded);
-      print(categorias.listaCat[0].name);
-      return [];
+     // print(categorias.listaCat[3].name);
+      return categorias.listaCat;
   }
 
 

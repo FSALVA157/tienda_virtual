@@ -59,7 +59,8 @@ List<String> listImagenes = [
      'assets/images/carrousel/slider_1.jpg',
       'assets/images/carrousel/slider_2.jpg',
       'assets/images/carrousel/slider_3.jpg',
-      'assets/images/carrousel/slider_4.jpg'
+      'assets/images/carrousel/slider_4.jpg',
+      'assets/images/carrousel/slider_5.jpg'
 ];
 
     return CarouselSlider(

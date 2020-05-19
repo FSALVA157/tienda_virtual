@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
-import 'package:tienda_virtual/src/widgets/listview_categorias.dart';
+import 'package:tienda_virtual/src/widgets/pageview_categorias.dart';
 import 'package:tienda_virtual/src/widgets/widgets.dart';
 import 'package:tienda_virtual/src/poviders/categorias_provider.dart';
 
@@ -8,13 +8,14 @@ import 'package:tienda_virtual/src/poviders/categorias_provider.dart';
 class HomePage extends StatefulWidget {
   static final String ruta = 'home'; 
   
+  
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   bool _isSearching = false;
-  
+  final categoriasProvider = new CategoriasProvider();
   
 
   @override
@@ -22,6 +23,8 @@ class _HomePageState extends State<HomePage> {
       final _screenSize = MediaQuery.of(context).size;
       double _heightCarousel = _screenSize.height * 0.3;
       double _heightCategorias = _screenSize.height * 0.2;
+      categoriasProvider.getCategorias();
+      
       return Scaffold(
            drawer: BasicDrawer(),
           appBar: menuApp(),
@@ -33,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               height: _heightCarousel,
               child: carouselBasico(_heightCarousel),
             ),
-             Categorias(),
+             _menuCategorias(context),
             
           
     
@@ -47,8 +50,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   AppBar menuApp(){
-            final categoriasProvider = new CategoriasProvider();
-            categoriasProvider.getCategorias();
+            
+            
             if (_isSearching == true){
               return getAppBarSearching(cancelSearch, searching);
             }else{
@@ -75,5 +78,36 @@ class _HomePageState extends State<HomePage> {
 
   void searching(){}
 
-  
+  Widget _menuCategorias(BuildContext context){
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text('Categorías',style: Theme.of(context).textTheme.subtitle2,),
+            ),
+            FutureBuilder(
+              future: categoriasProvider.getCategorias(),
+              //initialData: InitialData,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if(snapshot.hasData){
+                  return PageViewCategorias(categorias: snapshot.data,);
+                }else{
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
+
+    );
+
+
+  }
+
 }

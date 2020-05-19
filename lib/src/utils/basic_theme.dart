@@ -5,32 +5,34 @@ ThemeData basicTheme(){
   //metodo que sobreescribe el TextTheme por defecto
   TextTheme _basicTextTheme(TextTheme base){
       return base.copyWith(
-        headline: base.headline.copyWith(
+        headline1: base.headline1.copyWith(
           fontFamily: 'Roboto',
           fontSize: 22.0,
           color: Colors.grey
         ),
-        title: base.title.copyWith(
+        subtitle1: base.subtitle1.copyWith(
           fontFamily: 'Montserrat',
           fontSize: 15.0,
           color: Colors.white,
           fontWeight: FontWeight.bold
         ),
-        display1: base.display1.copyWith(
+        
+        subtitle2: base.subtitle2.copyWith(
           fontFamily: 'Roboto',
           fontSize: 20.0,
           color: Colors.blueGrey
         ),
-        display2: base.display2.copyWith(
+        bodyText1: base.bodyText1.copyWith(
           fontFamily: 'Roboto',
           fontSize: 14.0,
           color: Colors.grey
         ),
         caption: base.caption.copyWith(
+          fontSize: 10.0,
           fontFamily: 'Roboto',
-          color: Colors.white
+          color: Colors.grey
         ),
-        subtitle: base.subtitle.copyWith(
+        bodyText2: base.bodyText2.copyWith(
           fontFamily: 'Lato',
           color: Colors.blueGrey,
           fontSize: 10.0,

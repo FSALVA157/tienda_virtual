@@ -44,10 +44,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/images/carrousel/slider_1.jpg
-   - assets/images/carrousel/slider_2.jpg
-   - assets/images/carrousel/slider_3.jpg
-   - assets/images/carrousel/slider_4.jpg
+   - assets/images/carrousel/
+   - assets/images/no_image.png
+   #- assets/images/carrousel/slider_3.jpg
+   #- assets/images/carrousel/slider_4.jpg
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
