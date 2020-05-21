@@ -20,7 +20,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-      final _screenSize = MediaQuery.of(context).size;
+      final mq = MediaQuery.of(context);
+      final _screenSize = mq.size;
       double _heightCarousel = _screenSize.height * 0.3;
       double _heightCategorias = _screenSize.height * 0.2;
       categoriasProvider.getCategorias();
@@ -29,24 +30,31 @@ class _HomePageState extends State<HomePage> {
            drawer: BasicDrawer(),
           appBar: menuApp(),
             
-        body: ListView(
-          children: <Widget>[
-            //Slider
-            Container(
-              height: _heightCarousel,
-              child: carouselBasico(_heightCarousel),
-            ),
-             _menuCategorias(context),
-            
-          
-    
-
-
-
-
-          ],
+        body: OrientationBuilder(
+          builder: (context,orientation){
+              if(orientation == Orientation.portrait){
+                  return ListView(
+                    children: <Widget>[
+                      //Slider
+                      Container(
+                        height: _heightCarousel,
+                        child: carouselBasico(_heightCarousel),
+                      ),
+                      _menuCategorias(context),
+                    ]
+                      ); 
+              }else{
+                return ListView(
+                    children: <Widget>[
+                      //Slider
+                        _menuCategorias(context),
+                    ]
+                      ); 
+              }
+          },
         ),
-    );
+      );
+    
   }
 
   AppBar menuApp(){
@@ -79,7 +87,7 @@ class _HomePageState extends State<HomePage> {
   void searching(){}
 
   Widget _menuCategorias(BuildContext context){
-
+    final media = MediaQuery.of(context); 
     return Container(
         width: double.infinity,
         child: Column(
@@ -94,7 +102,8 @@ class _HomePageState extends State<HomePage> {
               //initialData: InitialData,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if(snapshot.hasData){
-                  return PageViewCategorias(categorias: snapshot.data,);
+                  
+                  return PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.15);
                 }else{
                   return Center(
                     child: CircularProgressIndicator(),
