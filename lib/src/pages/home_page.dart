@@ -102,8 +102,7 @@ class _HomePageState extends State<HomePage> {
               //initialData: InitialData,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if(snapshot.hasData){
-                  
-                  return PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.15);
+                 return media.orientation == Orientation.portrait? PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.15) : PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.25);
                 }else{
                   return Center(
                     child: CircularProgressIndicator(),

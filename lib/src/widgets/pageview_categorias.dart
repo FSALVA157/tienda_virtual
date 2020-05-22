@@ -21,7 +21,7 @@ class PageViewCategorias extends StatelessWidget {
         return  
                 Container(
                   padding: EdgeInsets.only(top: 10.0,bottom: 10.0),
-                  color: Colors.black87,
+                  //color: Colors.black87,
                    width: double.infinity,
                    height: altura,
                    child: PageView.builder(

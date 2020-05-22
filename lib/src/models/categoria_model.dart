@@ -10,9 +10,9 @@ class Categorias{
     if (jsonList == null) return;
 
     for (var item in jsonList) {
-      itemCategoria = Categoria.fromJSonList(item);
       //si una categoria no tiene imagen no la muestra
-      if(itemCategoria.image.src != null){
+      if(item['image'] != null){
+        itemCategoria = Categoria.fromJSonList(item);
         listaCat.add(itemCategoria);
       } 
     }
@@ -53,7 +53,14 @@ class Categoria {
     this.parent      = jsonCat['parent'];
     this.description = jsonCat['description'];
     this.display     = jsonCat['display'];
-    this.image       = ImageClass.fromJsonMap(jsonCat['image']);
+    //this.image       = ImageClass.fromJsonMap(jsonCat['image']);
+
+    if(jsonCat['image']!=null){
+      this.image       = ImageClass.fromJsonMap(jsonCat['image']);
+    }else{
+      this.image = null;
+    }
+
     this.menuOrder   = jsonCat['menu_order'];
     this.count       = jsonCat['count'];
     this.links       = Links.fromJsonList(jsonCat['_links']);
