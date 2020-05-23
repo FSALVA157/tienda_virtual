@@ -4,8 +4,9 @@ import 'package:tienda_virtual/src/models/categoria_model.dart';
 class PageViewCategorias extends StatelessWidget {
   final List<Categoria> categorias;
   final double altura;
+  final Function siguientePagina;
 
-  PageViewCategorias({@required this.categorias,@required this.altura});
+  PageViewCategorias({@required this.categorias,@required this.altura,@required this.siguientePagina});
   
   final _pageController = PageController(
     initialPage: 1,
@@ -15,8 +16,13 @@ class PageViewCategorias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _tamanoPantalla = MediaQuery.of(context).size;
-    //double altura = _tamanoPantalla.height * 0.15; 
     
+    //agrego una listner al pageController para detectar cuando llego al final de la pagina y cargar mas categorias
+    _pageController.addListener(() { 
+      if(_pageController.position.pixels >= _pageController.position.maxScrollExtent - 200){
+        siguientePagina();
+      }
+    });
     
         return  
                 Container(

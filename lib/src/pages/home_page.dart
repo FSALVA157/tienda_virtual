@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
       final mq = MediaQuery.of(context);
       final _screenSize = mq.size;
       double _heightCarousel = _screenSize.height * 0.3;
-      double _heightCategorias = _screenSize.height * 0.2;
-      categoriasProvider.getCategorias();
+    //  double _heightCategorias = _screenSize.height * 0.2;
+     categoriasProvider.getCategorias();
       
       return Scaffold(
            drawer: BasicDrawer(),
@@ -97,12 +97,12 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(left: 20.0),
               child: Text('Categorías',style: Theme.of(context).textTheme.subtitle2,),
             ),
-            FutureBuilder(
-              future: categoriasProvider.getCategorias(),
+            StreamBuilder(
+              stream: categoriasProvider.categoriasStream,
               //initialData: InitialData,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if(snapshot.hasData){
-                 return media.orientation == Orientation.portrait? PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.15) : PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.25);
+                 return media.orientation == Orientation.portrait? PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.15,siguientePagina: categoriasProvider.getCategorias) : PageViewCategorias(categorias: snapshot.data,altura: media.size.height * 0.25,siguientePagina: categoriasProvider.getCategorias);
                 }else{
                   return Center(
                     child: CircularProgressIndicator(),

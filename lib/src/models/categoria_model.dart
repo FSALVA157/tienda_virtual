@@ -53,13 +53,13 @@ class Categoria {
     this.parent      = jsonCat['parent'];
     this.description = jsonCat['description'];
     this.display     = jsonCat['display'];
-    //this.image       = ImageClass.fromJsonMap(jsonCat['image']);
+    this.image       = ImageClass.fromJsonMap(jsonCat['image']);
 
-    if(jsonCat['image']!=null){
-      this.image       = ImageClass.fromJsonMap(jsonCat['image']);
-    }else{
-      this.image = null;
-    }
+    // if(jsonCat['image']!=null){
+    //   this.image       = ImageClass.fromJsonMap(jsonCat['image']);
+    // }else{
+    //   this.image = null;
+    // }
 
     this.menuOrder   = jsonCat['menu_order'];
     this.count       = jsonCat['count'];
