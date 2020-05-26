@@ -53,10 +53,10 @@ Widget _poster(final size,BuildContext context,Categoria categoria){
         Flexible(
           flex: 5,
             child: FadeInImage(
-            placeholder: AssetImage('assets/images/no_image.png'), 
-            image: NetworkImage(categoria.image.src),
-            fit: BoxFit.cover,
-            ),
+                  placeholder: AssetImage('assets/images/no_image.png'), 
+                  image: NetworkImage(categoria.image.src),
+                  fit: BoxFit.cover,
+                  ),
         ),
           Flexible(
               flex: 1,

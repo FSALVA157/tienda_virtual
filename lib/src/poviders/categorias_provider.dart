@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:async';
@@ -49,18 +50,31 @@ class CategoriasProvider{
         return [];
       }
 
-      final dataDecoded = json.decode(respuesta.body);
-      final categorias = Categorias.fromJsonList(dataDecoded);
+      // final dataDecoded = json.decode(respuesta.body);
+      // final categorias = Categorias.fromJsonList(dataDecoded);
+
+      //implementaciond de hilo o isolate usando compute
+      //  List<Categoria> parseCategorias(String respuestaBody){
+      //   final dataDecoded = json.decode(respuestaBody);
+      //   final categorias = Categorias.fromJsonList(dataDecoded);
+      //   return categorias.listaCat;
+      // }
+
+      final resp = await compute(parseCategorias,respuesta.body);
+
      
      //cargar el stream
-      final resp = categorias.listaCat;
+      //final resp = categorias.listaCat;
       _categoriasList.addAll(resp);
       categoriasSink(_categoriasList);
       _cargando = false;
       return resp;
       
   }
-
-
+   static  List<Categoria> parseCategorias(String respuestaBody){
+         final dataDecoded = json.decode(respuestaBody);
+         final categorias = Categorias.fromJsonList(dataDecoded);
+         return categorias.listaCat;
+       }
 
 }

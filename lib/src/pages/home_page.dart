@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
      categoriasProvider.getCategorias();
       
       return Scaffold(
+        backgroundColor: Colors.white,
            drawer: BasicDrawer(),
           appBar: menuApp(),
             
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       //Slider
                       Container(
+                        
                         height: _heightCarousel,
                         child: carouselBasico(_heightCarousel),
                       ),
