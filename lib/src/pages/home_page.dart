@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
+import 'package:tienda_virtual/src/widgets/grid_view_productos.dart';
 import 'package:tienda_virtual/src/widgets/pageview_categorias.dart';
 import 'package:tienda_virtual/src/widgets/widgets.dart';
-import 'package:tienda_virtual/src/poviders/categorias_provider.dart';
+import 'package:tienda_virtual/src/providers/categorias_provider.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -38,11 +39,17 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       //Slider
                       Container(
-                        
                         height: _heightCarousel,
                         child: carouselBasico(_heightCarousel),
                       ),
                       _menuCategorias(context),
+                       Container(
+                         padding: EdgeInsets.symmetric(horizontal: 10.0),
+                         width: double.infinity,
+                         height: _screenSize.height * 0.65,
+                          child:
+                      GridViewProductos(cantColumnas: 2,)
+                       )
                     ]
                       ); 
               }else{
@@ -50,7 +57,14 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       //Slider
                         _menuCategorias(context),
-                    ]
+                        Container(
+                          width: double.infinity,
+                          height: _screenSize.height * 0.65,
+                          child:
+                            GridViewProductos(cantColumnas: 3,)
+                           )
+                    ],
+                    
                       ); 
               }
           },

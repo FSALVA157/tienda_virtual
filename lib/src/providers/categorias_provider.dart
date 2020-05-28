@@ -71,6 +71,8 @@ class CategoriasProvider{
       return resp;
       
   }
+
+  //funcion sacada de la clase para poder ser utilizada por el isolate
    static  List<Categoria> parseCategorias(String respuestaBody){
          final dataDecoded = json.decode(respuestaBody);
          final categorias = Categorias.fromJsonList(dataDecoded);
