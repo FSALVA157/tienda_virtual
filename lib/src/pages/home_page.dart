@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tienda_virtual/src/providers/productos_provider.dart';
 import 'package:tienda_virtual/src/utils/basic_drawer.dart';
 import 'package:tienda_virtual/src/widgets/grid_view_productos.dart';
 import 'package:tienda_virtual/src/widgets/pageview_categorias.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   bool _isSearching = false;
   final categoriasProvider = new CategoriasProvider();
   
+  
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,8 @@ class _HomePageState extends State<HomePage> {
       double _heightCarousel = _screenSize.height * 0.3;
     //  double _heightCategorias = _screenSize.height * 0.2;
      categoriasProvider.getCategorias();
+
+     
       
       return Scaffold(
         backgroundColor: Colors.white,
@@ -34,6 +38,7 @@ class _HomePageState extends State<HomePage> {
             
         body: OrientationBuilder(
           builder: (context,orientation){
+            
               if(orientation == Orientation.portrait){
                   return ListView(
                     children: <Widget>[
@@ -104,6 +109,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _menuCategorias(BuildContext context){
     final media = MediaQuery.of(context); 
+   // productosProvider.getOfertas();
     return Container(
         width: double.infinity,
         child: Column(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tienda_virtual/src/providers/productos_provider.dart';
 
 
 class GridViewProductos extends StatelessWidget {
  int cantColumnas;
+ final productosProvider = new ProductosProvider();
 
  GridViewProductos({@required this.cantColumnas});
   
@@ -10,6 +12,7 @@ class GridViewProductos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     productosProvider.getOfertas();
     return GridView.builder(
       itemCount: listaDatos.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
