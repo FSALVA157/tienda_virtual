@@ -10,7 +10,7 @@ import 'package:tienda_virtual/src/providers/categorias_provider.dart';
 class HomePage extends StatefulWidget {
   static final String ruta = 'home'; 
   
-  
+   
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -18,11 +18,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isSearching = false;
   final categoriasProvider = new CategoriasProvider();
-  
+  final productosProvider = new ProductosProvider();
   
 
   @override
   Widget build(BuildContext context) {
+      productosProvider.getOfertas();
       final mq = MediaQuery.of(context);
       final _screenSize = mq.size;
       double _heightCarousel = _screenSize.height * 0.3;
@@ -38,44 +39,81 @@ class _HomePageState extends State<HomePage> {
             
         body: OrientationBuilder(
           builder: (context,orientation){
-            
-              if(orientation == Orientation.portrait){
-                  return ListView(
+                 return ListView(
                     children: <Widget>[
                       //Slider
-                      Container(
+                      orientation == Orientation.portrait?Container(
                         height: _heightCarousel,
                         child: carouselBasico(_heightCarousel),
-                      ),
-                      _menuCategorias(context),
+                      ):Container(),
+                      //menu de categorias
+                     _menuCategorias(context),     
                        Container(
                          padding: EdgeInsets.symmetric(horizontal: 10.0),
                          width: double.infinity,
                          height: _screenSize.height * 0.65,
-                          child:
-                      GridViewProductos(cantColumnas: 2,)
+                          child: StreamBuilder(
+                            stream: productosProvider.productsStream,
+                            //initialData: initialData ,
+                            builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+                              if(snapshot.hasData){
+                                  return  
+                                  orientation == Orientation.portrait?GridViewProductos(productos: snapshot.data, cantColumnas: 2,):GridViewProductos(productos: snapshot.data, cantColumnas: 3,);
+                              }else{
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                     
                        )
                     ]
-                      ); 
-              }else{
-                return ListView(
-                    children: <Widget>[
-                      //Slider
-                        _menuCategorias(context),
-                        Container(
-                          width: double.infinity,
-                          height: _screenSize.height * 0.65,
-                          child:
-                            GridViewProductos(cantColumnas: 3,)
-                           )
-                    ],
+                      );     
+
+
+
+
+            
+              // if(orientation == Orientation.portrait){
+                 
+              // }else{
+              //   return ListView(
+              //       children: <Widget>[
+              //         //Slider
+              //           _menuCategorias(context),
+              //           Container(
+              //             width: double.infinity,
+              //             height: _screenSize.height * 0.65,
+              //             child:StreamBuilder(
+              //               stream: productosProvider.productsStream,
+              //               //initialData: initialData ,
+              //               builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+              //                 if(snapshot.hasData){
+              //                 return  GridViewProductos(productos: snapshot.data, cantColumnas: 3,);
+              //                 }else{
+              //                   return Center(
+              //                     child: CircularProgressIndicator(),
+              //                   );
+              //                 }
+              //               },
+              //             ),
+              //             ),
+              //       ],
                     
-                      ); 
-              }
+              //         ); 
+        //       }
           },
         ),
       );
     
+  }
+
+  @override
+  void dispose() { 
+    categoriasProvider.disposeStreams();
+    productosProvider.disposeStreams();
+    super.dispose();
   }
 
   AppBar menuApp(){
