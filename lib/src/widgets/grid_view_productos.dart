@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tienda_virtual/src/models/producto_model.dart';
-
+import 'package:tienda_virtual/src/widgets/widgets.dart';
 
 
 class GridViewProductos extends StatelessWidget {
@@ -22,11 +22,9 @@ class GridViewProductos extends StatelessWidget {
         ),
 
       itemBuilder: (BuildContext context,int i){
-        return Card(
-          color: Colors.grey,
-          child: Text(productos[i].name),
+        return  cardProducto(productos[i],context);
 
-        );
+        
       },
       scrollDirection: Axis.vertical,
       );

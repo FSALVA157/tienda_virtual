@@ -80,7 +80,7 @@ class Producto {
   String purchaseNote;
   List<Category> categories;
   List<Tag> tags;
-  List<Image> images;
+  List<ImageProduct> images;
   List<Attribute> attributes;
   List<DefaultAttribute> defaultAttributes;
   List<int> variations;
@@ -171,7 +171,7 @@ class Producto {
     List<DefaultAttribute> listDefaultAttributes = list.map((e) => DefaultAttribute.fromJsonMap(e)).toList();
     //trabajando 'images'
     var listAuxImages = json['images'] as List;
-    List<Image> listImages = listAuxImages.map((e) => Image.fromJsonMap(e)).toList();
+    List<ImageProduct> listImages = listAuxImages.map((e) => ImageProduct.fromJsonMap(e)).toList();
     //trabajando 'downloads'
     var listDownAux = json['downloads'] as List;
     List<Download> listDownloads =listDownAux.map((e) => Download.fromJsonMap(e)).toList();
@@ -340,7 +340,7 @@ class Dimensions {
 
 }
 
-class Image {
+class ImageProduct {
   int id;
   String dateCreated;
   String dateCreatedGmt;
@@ -350,7 +350,7 @@ class Image {
   String name;
   String alt;
 
-  Image({
+  ImageProduct({
     this.id,
     this.dateCreated,
     this.dateCreatedGmt,
@@ -361,7 +361,7 @@ class Image {
     this.alt,
   });
 
-  Image.fromJsonMap(Map<String,dynamic> jsonImage){
+  ImageProduct.fromJsonMap(Map<String,dynamic> jsonImage){
     this.id = jsonImage['id'];
     this.dateCreated = jsonImage['date_created'];
     this.dateCreatedGmt = jsonImage['date_created_gmt'];

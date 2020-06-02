@@ -30,7 +30,7 @@ ThemeData basicTheme(){
         caption: base.caption.copyWith(
           fontSize: 10.0,
           fontFamily: 'Roboto',
-          color: Colors.grey
+          color: Colors.black
         ),
         bodyText2: base.bodyText2.copyWith(
           fontFamily: 'Lato',
@@ -64,7 +64,14 @@ ThemeData basicTheme(){
     tabBarTheme: base.tabBarTheme.copyWith(
         labelColor: Colors.cyanAccent,
         unselectedLabelColor: Colors.grey,
-      )
+      ),
+      cardTheme: CardTheme(
+        clipBehavior: Clip.antiAlias,
+        color: Colors.white,
+        elevation: 5.0,
+        shadowColor: Colors.blueGrey[100],
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+     ),
   );
 
 

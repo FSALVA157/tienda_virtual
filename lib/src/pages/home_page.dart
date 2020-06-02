@@ -72,37 +72,6 @@ class _HomePageState extends State<HomePage> {
                       );     
 
 
-
-
-            
-              // if(orientation == Orientation.portrait){
-                 
-              // }else{
-              //   return ListView(
-              //       children: <Widget>[
-              //         //Slider
-              //           _menuCategorias(context),
-              //           Container(
-              //             width: double.infinity,
-              //             height: _screenSize.height * 0.65,
-              //             child:StreamBuilder(
-              //               stream: productosProvider.productsStream,
-              //               //initialData: initialData ,
-              //               builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-              //                 if(snapshot.hasData){
-              //                 return  GridViewProductos(productos: snapshot.data, cantColumnas: 3,);
-              //                 }else{
-              //                   return Center(
-              //                     child: CircularProgressIndicator(),
-              //                   );
-              //                 }
-              //               },
-              //             ),
-              //             ),
-              //       ],
-                    
-              //         ); 
-        //       }
           },
         ),
       );
@@ -153,10 +122,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(left: 20.0),
-              child: Text('Categorías',style: Theme.of(context).textTheme.subtitle2,),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(left: 20.0),
+            //   child: Text('Categorías',style: Theme.of(context).textTheme.subtitle2,),
+            // ),
             StreamBuilder(
               stream: categoriasProvider.categoriasStream,
               //initialData: InitialData,
