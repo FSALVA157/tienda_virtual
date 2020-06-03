@@ -63,9 +63,9 @@ class ProductosProvider{
    static  List<Producto> parseProductos(String respuestaBody){
          final dataDecoded = json.decode(respuestaBody);
          final productos = Productos.fromJsonList(dataDecoded);
-         for (var item in productos.listaProductos) {
-           print (item.name);
-         }
+        //  for (var item in productos.listaProductos) {
+        //    print (item.name);
+        //  }
          return productos.listaProductos;
        }
 
