@@ -48,26 +48,7 @@ class _HomePageState extends State<HomePage> {
                       ):Container(),
                       //menu de categorias
                      _menuCategorias(context),     
-                       Container(
-                         padding: EdgeInsets.symmetric(horizontal: 10.0),
-                         width: double.infinity,
-                         height: _screenSize.height * 0.65,
-                          child: StreamBuilder(
-                            stream: productosProvider.productsStream,
-                            //initialData: initialData ,
-                            builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-                              if(snapshot.hasData){
-                                  return  
-                                  orientation == Orientation.portrait?GridViewProductos(productos: snapshot.data, cantColumnas: 2,):GridViewProductos(productos: snapshot.data, cantColumnas: 3,);
-                              }else{
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            },
-                          ),
-                     
-                       )
+                      gridOfertas(context,orientation),
                     ]
                       );     
 
@@ -80,9 +61,43 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() { 
+    super.dispose();
     categoriasProvider.disposeStreams();
     productosProvider.disposeStreams();
-    super.dispose();
+   
+  }
+
+  Widget gridOfertas(BuildContext context,Orientation orientation){
+    return 
+        Container(
+                         padding: EdgeInsets.symmetric(horizontal: 10.0),
+                         width: double.infinity,
+                         height: MediaQuery.of(context).size.height * 0.65,
+                          child: StreamBuilder(
+                            stream: productosProvider.productsStream,
+                            //initialData: initialData ,
+                            builder: (BuildContext context, AsyncSnapshot<List> snapshot){
+                              if(snapshot.hasData){
+                                  return  
+                                  orientation == Orientation.portrait?GridViewProductos(
+                                    productos: snapshot.data, 
+                                    cantColumnas: 2,
+                                    siguientePagina: productosProvider.getOfertas
+                                    ):GridViewProductos(
+                                    productos: snapshot.data,
+                                    cantColumnas: 3,
+                                    siguientePagina: productosProvider.getOfertas,
+                                    );
+                              }else{
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                          ),
+                     
+                       )
+    ;
   }
 
   AppBar menuApp(){

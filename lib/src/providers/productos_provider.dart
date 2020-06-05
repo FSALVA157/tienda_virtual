@@ -29,28 +29,49 @@ class ProductosProvider{
   } 
   //fin definicion del stream para productos
 
-  //seccion de trabajo para productos en oferta
-  Future <List<Producto>> getOfertas() async {
-    if(_cargando) return [];
-
-      _cargando = true;
-      _productsPage++;
-      final url = Uri.https(_url, _endPoint,{
-        'consumer_key':_apiKey,
-        'consumer_secret' : _secretApiKey,
-        'page' : _productsPage.toString(),
-        'on_sale' : 'true',
-        });
-
-      final respuestahttp = await http.get(url);
+  //metodo que unifica los requesthttp
+  Future<List<Producto>> _procesarRequest(Uri url) async{
+       final respuestahttp = await http.get(url);
       //validacion para el final de pagina
       if(respuestahttp == null){
         
         return [];
       }
 
-      final listado = await compute(parseProductos,respuestahttp.body);
-      //print (resp);
+      return await compute(parseProductos,respuestahttp.body);
+  }
+
+  //seccion de trabajo para productos en oferta
+  Future <List<Producto>> getOfertas() async {
+    if(_cargando) return [];
+
+      _cargando = true;
+      _productsPage++;
+      print('Cargando la pagina $_productsPage del GETOFERTAS');
+      final url = Uri.https(_url, _endPoint,{
+        'consumer_key':_apiKey,
+        'consumer_secret' : _secretApiKey,
+        'page' : _productsPage.toString(),
+        'on_sale' : 'true',
+        //'page' : '1',
+        });
+
+      //llammando a _procesarRequest
+      final listado = await _procesarRequest(url);
+
+
+
+      // final respuestahttp = await http.get(url);
+      // //validacion para el final de pagina
+      // if(respuestahttp == null){
+        
+      //   return [];
+      // }
+
+      // final listado = await compute(parseProductos,respuestahttp.body);
+       
+
+      
       //cargar el stream
           _productsList.addAll(listado);
           productsSink(_productsList);
@@ -63,9 +84,9 @@ class ProductosProvider{
    static  List<Producto> parseProductos(String respuestaBody){
          final dataDecoded = json.decode(respuestaBody);
          final productos = Productos.fromJsonList(dataDecoded);
-        //  for (var item in productos.listaProductos) {
-        //    print (item.name);
-        //  }
+          for (var item in productos.listaProductos) {
+            print (item.name);
+          }
          return productos.listaProductos;
        }
 

@@ -14,11 +14,13 @@ class AppTienda extends StatelessWidget {
       initialRoute: HomePage.ruta,
       routes: {
         HomePage.ruta : (BuildContext context) => HomePage(),
-      },onUnknownRoute: (settings){
+      },
+      onUnknownRoute: (settings){
           return MaterialPageRoute(
             builder: (context) => HomePage(),
             );
       },
+      
     );
   }
 }
