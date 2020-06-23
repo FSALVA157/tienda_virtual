@@ -16,21 +16,10 @@ class GridViewProductos extends StatelessWidget {
 
  final _scrollController = new ScrollController();
   
-// @override
-// void initState() { 
-//   super.initState();//Debo hacer un statefull widget???
-//   _scrollController.addListener(() {
-//     if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200){
-//       print('llegando al final del Grid');
-//     }
-//    });   
-
-// }
-
 
   @override
   Widget build(BuildContext context) {
-    final _screenSize = MediaQuery.of(context).size;
+    //final _screenSize = MediaQuery.of(context).size;
 
     _scrollController.addListener(() { 
       if (_scrollController.offset >= _scrollController.position.maxScrollExtent) {
@@ -47,7 +36,6 @@ class GridViewProductos extends StatelessWidget {
     return GridView.builder(
       controller: _scrollController,
       itemCount:  productos.length,
-      //itemCount:  10,
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: cantColumnas,
